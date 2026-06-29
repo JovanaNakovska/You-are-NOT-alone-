@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="siteTitle">You are NOT alone!</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="brand" id="navBrand">Внатрешен Мир.</div>
+
+        <!-- ИНТЕЛЕГЕНТЕН АУДИО ПЛЕЕР ЗА АМБИЕНТ -->
+        <div class="ambient-player">
+            <button class="audio-btn" id="ambientBtn" onclick="toggleAmbientAudio()">🎵 Пушти амбиент</button>
+            <audio id="ambientAudio" loop src="ambient.mp3"></audio>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" data-page="home" class="active" id="linkHome">Почетна</a></li>
+            <li><a href="#kviz" data-page="kviz" id="linkQuiz">Тест за Стрес</a></li>
+            <li><a href="#offline" data-page="offline" id="linkOffline">Офлајн Свет</a></li>
+            <li><a href="#dnevnik" data-page="dnevnik" id="linkJournal">Мој Дневник</a></li>
+
+            <!-- ПРИЛАГОДЕНО МЕНИ ЗА ЈАЗИК СО ВИСТИНСКИ СЛИКИ-ЗНАМИЊА -->
+            <li class="lang-switcher">
+                <div class="lang-current" onclick="toggleLangMenu()">
+                    <img id="currentLangFlag" src="https://flagcdn.com/w20/mk.png" alt="MK">
+                    <span id="currentLangText">MK</span> <span style="font-size: 0.7rem;">▼</span>
+                </div>
+                <div class="lang-options" id="langDropdown">
+                    <div class="lang-opt" onclick="selectLanguage('mk')">
+                        <img src="https://flagcdn.com/w20/mk.png" alt="MK"> MK
+                    </div>
+                    <div class="lang-opt" onclick="selectLanguage('en')">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="EN"> EN
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- 1. ПОЧЕТНА СТРАНИЦА -->
+    <section class="page active" id="home">
+        <div class="wrap">
+            <div class="Pocetok">
+                <h2>Никогаш не си САМ!</h2>
+                <h3 id="homeSub">Дали само знаеш колку луѓе ширум светот поминуваат низ истиот стрес и притисок како и
+                    ти?</h3>
+                <img src="prva-slika.jpg" alt="Поддршка" class="hero-img" height="213" width="320"/>
+            </div>
+
+            <hr/>
+            <br/>
+
+            <div class="card hero-card">
+                <h2 id="heroCardTitle">Исклучи се од дигиталниот свет.</h2>
+                <p class="sub" id="heroCardSub">Добредојде во твојот личен простор без нотификации, социјални мрежи и
+                    врева.</p>
+                <p id="heroCardText">Оваа страница е создадена за да те потсети како е да уживаш во сопственото
+                    присуство. Одвој неколку минути за себе, провери го твоето ниво на стрес преку квизот или инспирирај
+                    се за твојата следна офлајн активност.</p>
+            </div>
+
+            <img class="hero-img" src="ds3.png" alt="Мир" height="313" width="520"/>
+        </div>
+    </section>
+
+    <!-- 2. СТРАНИЦА ЗА КВИЗ -->
+    <section class="page" id="kviz">
+        <div class="wrap">
+            <div class="card">
+                <h2 id="quizTitle">Колку ти е стресен денот?</h2>
+                <p class="sub" id="quizSub">Одговори на овие 5 брзи прашања за да го провериш твоето моментално ниво на
+                    оптоварување.</p>
+
+                <div id="quizContainer">
+                    <div class="quiz-question">
+                        <p class="question-text" id="lblQ1">1. Колку пати денес фати да скролаш на социјалните мрежи без
+                            посебна причина?</p>
+                        <label class="quiz-option"><input type="radio" name="q1" value="1"> <span id="optQ1_1">Само неколку пати на кратко</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="2"> <span id="optQ1_2">Често фаќам во текот на денот</span></label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="3"> <span id="optQ1_3">Постојано сум на телефон, веќе е навика</span></label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p class="question-text" id="lblQ2">2. Како го чувствуваш твоето тело во моментов?</p>
+                        <label class="quiz-option"><input type="radio" name="q2" value="1"> <span id="optQ2_1">Опуштено и со добра енергија</span></label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="2"> <span id="optQ2_2">Малку напрегнато во рамениците/вратот</span></label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="3"> <span id="optQ2_3">Преморено и под постојан притисок</span></label>
+                    </div>
+
+                    <hr/>
+
+                    <div class="quiz-question">
+                        <p class="question-text" id="lblQ3">3. Дали денес најде барем 15 минути во кои беше сам со
+                            твоите мисли без никаков екран?</p>
+                        <label class="quiz-option"><input type="radio" name="q3" value="1"> <span id="optQ3_1">Да, уживав во тишина</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="2"> <span id="optQ3_2">Се обидов, но брзо ми летнаа мислите</span></label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="3"> <span id="optQ3_3">Не, постојано имав пуштено нешто во позадина</span></label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p class="question-text" id="lblQ4">4. Дали често се чувствуваш како да не ги исполнуваш
+                            сопствените очекувања и како да заостануваш зад другите?</p>
+                        <label class="quiz-option"><input type="radio" name="q4" value="1"> <span id="optQ4_1">Ретко, знам дека секој си има свој пат</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="2"> <span id="optQ4_2">Понекогаш ме фаќа несигурност и притисок</span></label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="3"> <span id="optQ4_3">Да, постојано чувствувам притисок дека морам подобро</span></label>
+                    </div>
+
+                    <div class="quiz-question">
+                        <p class="question-text" id="lblQ5">5. Дали чувствуваш дека светот околу тебе те притиска со
+                            пребрзо темпо?</p>
+                        <label class="quiz-option"><input type="radio" name="q5" value="1"> <span id="optQ5_1">Не, успевам да си го задржам мојот мир</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="2"> <span id="optQ5_2">Да, повремено ме фаќа паника од премногу информации</span></label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="3"> <span id="optQ5_3">Да, често се чувствувам преплавено од сè</span></label>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="calculateStress()" id="btnCalculate">Погледни резултат
+                    </button>
+                </div>
+
+                <div id="quizResult" class="result-box" style="display: none;">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultText" style="margin-top: 8px; color: var(--ink-soft);"></p>
+                    <button class="btn btn-secondary" style="margin-top: 16px;" onclick="resetQuiz()" id="btnResetQuiz">
+                        Пробај пак
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. СТРАНИЦА ЗА ОФЛАЈН АКТИВНОСТИ -->
+    <section class="page" id="offline">
+        <div class="wrap">
+
+
+            <div class="card layout-card">
+                <h2 style="font-size: 1.5rem; margin-bottom: 16px; color: #1e40af; text-align: center;" id="essayTitle">
+                    Дигиталниот свет и притисокот врз младите!
+                </h2>
+                <p style="margin-bottom: 14px; text-align: justify;" id="essayP1">
+                    Живееме во дигитален свет, многу поразличен од оној кој бил порано. Ако си тинејџер или пак си во
+                    почетокот на својата зрелост, можеби ќе се согласиш со фактот дека <strong>понекогаш родителите не
+                    го разбираат светот</strong> и не согледуваат како понекогаш може да биде тешко да се социјализираш
+                    и да се соочиш со притисокот од твоите врсници.
+                </p>
+                <p style="margin-bottom: 14px; text-align: justify;" id="essayP2">
+                    Тие често не забележуваат дека денес бучавата не прекинува кога ќе го затвориш куферот или кога ќе
+                    си дојдеш дома; таа продолжува на нашите екрани, <strong>24/7</strong>, преку секое ново известување
+                    и секој „совршен“ туѓ живот што го гледаме онлајн. Се наоѓаме во еден чуден, тивок меѓупростор каде
+                    што сме поврзани со илјадници дигитални профили, а сепак, длабоко во себе, останува она чувство на
+                    осаменост и преоптовареност од преголемите очекувања.
+                </p>
+                <div class="topka">
+                    <img src="ds1.jpg" />
+                </div>
+            </div>
+
+            <hr/>
+            <br/>
+
+            <h2 id="methodsTitle">Начини како да го подобриш менталното здравје</h2>
+            <p class="sub" style="margin-bottom: 24px;" id="methodsSub">Идеи кои ќе ти помогнат да се отргнеш од
+                дигиталниот свет.</p>
+
+            <div class="card enrich-card">
+                <div class="card-badge" id="badgeFocus">Умствен фокус</div>
+                <h3 id="cardReadTitle">📖 Читање книга</h3>
+                <p id="cardReadText">Запознавање со еден сосема нов свет кој е уредно опишан на чист лист хартија.
+                    Нурнувањето во фантазиите го тренира твојот мозок да одржи длабок фокус. Кога читаш, ти си режисер
+                    на сопствениот филм во главата.</p>
+                <img src="citanje_kniga.webp" alt="Читање" class="hero-img" height="213" width="320"/>
+            </div>
+
+            <div class="card enrich-card">
+                <div class="card-badge" id="badgeBody">Енергија на телото</div>
+                <h3 id="cardRunTitle">🏃 Физичка активност</h3>
+                <p id="cardRunText">Понекогаш сè што ти е потребно е едноставно да се придвижиш. Без разлика дали е тоа
+                    брзо трчање, интензивен тренинг во теретана, возење точак или само бавна прошетка. Движењето го
+                    согорува вишокот кортизол.</p>
+                <img src="fizicka_aktivnost.jpg" alt="Вежбање" class="hero-img" height="213" width="320"/>
+            </div>
+
+            <div class="card challenge-card">
+                <div class="card-badge" style="background: #3b82f6; color: white;" id="badgeInteractive">Интерактивно
+                </div>
+                <h2 id="challengeTitle">🎯 Офлајн предизвик на денот</h2>
+                <p class="sub" id="challengeSub">Мали чекори кои прават голема разлика за твојот мир.</p>
+
+                <div class="challenge-box" id="challengeDisplay">
+                    Кликни на копчето подолу за да го добиеш твојот денешен предизвик!
+                </div>
+
+                <div class="challenge-actions">
+                    <button class="btn btn-secondary" onclick="generateChallenge()" id="btnNewChallenge">🎲 Нов
+                        предизвик
+                    </button>
+                    <button class="btn btn-primary" id="completeChallengeBtn" onclick="completeChallenge()"
+                            style="display: none;">✅ Го завршив ова!
+                    </button>
+                </div>
+                <p id="streakCounter"
+                   style="text-align: center; margin-top: 12px; font-weight: 600; color: #059669;"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. СТРАНИЦА ЗА ДНЕВНИК -->
+    <section class="page" id="dnevnik">
+        <div class="wrap">
+            <div class="card">
+                <h3 id="journalTitle">✍️ Водење личен дневник</h3>
+                <p class="sub" style="margin-top: 8px;" id="journalSub">Испишување на твоите емоции на хартија или во
+                    овој тивок простор.</p>
+
+                <textarea id="journalInput"
+                          placeholder="Како помина твојот ден? Што те извади од такт, а што те израдува? Истури ги мислите тука..."
+                          rows="6"
+                          style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #CBD5E1; margin-top: 12px; font-family: var(--font); resize: none;"></textarea>
+                <button class="btn btn-primary" style="margin-top: 12px;" onclick="saveJournalEntry()"
+                        id="btnSaveJournal">Зачувај белешка
+                </button>
+            </div>
+
+            <h2 style="margin: 24px 0 12px 0;" id="historyTitle">Твоите претходни записи</h2>
+            <div id="journalHistory">
+                <!-- Белешките ќе се појават тука -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- КОПЧЕ ЗА СКОКАЊЕ НАГОРЕ -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">▲</button>
+
+<script>
+    /* ПОДДРШКА ЗА ДВА ЈАЗИЦИ */
+    let currentLang = 'mk';
+
+    const translations = {
+        mk: {
+            navBrand: "Внатрешен Мир.",
+            playBtn: "🎵 Пушти амбиент",
+            pauseBtn: "⏸️ Паузирај мир",
+            linkHome: "Почетна",
+            linkQuiz: "Тест за Стрес",
+            linkOffline: "Офлајн Свет",
+            linkJournal: "Мој Дневник",
+            homeSub: "Дали само знаеш колку луѓе ширум светот поминуваат низ истиот стрес и притисок како и ти?",
+            heroCardTitle: "Исклучи се од дигиталниот свет.",
+            heroCardSub: "Добредојде во твојот личен простор без нотификации, социјални мрежи и врева.",
+            heroCardText: "Оваа страница е создадена за да те потсети како е да уживаш во сопственото присуство. Одвој неколку минути за себе, провери го твоето ниво на стрес преку квизот или инспирирај се за твојата следна офлајн активност.",
+            quizTitle: "Колку ти е стресен денот?",
+            quizSub: "Одговори на овие 5 брзи прашања за да го провериш твоето моментално ниво на оптоварување.",
+            lblQ1: "1. Колку пати денес фати да скролаш на социјалните мрежи без посебна причина?",
+            optQ1_1: "Само неколку пати на кратко",
+            optQ1_2: "Често фаќам во текот на денот",
+            optQ1_3: "Постојано сум на телефон, веќе е навика",
+            lblQ2: "2. Како го чувствуваш твоето тело во моментов?",
+            optQ2_1: "Опуштено и со добра енергија",
+            optQ2_2: "Малку напрегнато во рамениците/вратот",
+            optQ2_3: "Преморено и под постојан притисок",
+            lblQ3: "3. Дали денес најде барем 15 минути во кои беше сам со твоите мисли без никаков екран?",
+            optQ3_1: "Да, уживав во тишина",
+            optQ3_2: "Се обидов, но брзо ми летнаа мислите",
+            optQ3_3: "Не, постојано имав пуштено нешто во позадина",
+            lblQ4: "4. Дали често се чувствуваш како да не ги исполнуваш сопствените очекувања и како да заостануваш зад другите?",
+            optQ4_1: "Ретко, знам дека секој си има свој пат",
+            optQ4_2: "Понекогаш ме фаќа несигурност и притисок",
+            optQ4_3: "Да, постојано чувствувам притисок дека морам подобро",
+            lblQ5: "5. Дали чувствуваш дека светот околу тебе те притиска со пребрзо темпо?",
+            optQ5_1: "Не, успевам да си го задржам мојот мир",
+            optQ5_2: "Да, повремено ме фаќа паника од премногу информации",
+            optQ5_3: "Да, често се чувствувам преплавено од сè",
+            btnCalculate: "Погледни резултат",
+            btnResetQuiz: "Пробај пак",
+            badgeInteractive: "Интерактивно",
+            challengeTitle: "🎯 Офлајн предизвик на денот",
+            challengeSub: "Мали чекори кои прават голема разлика за твојот мир.",
+            challengeDefault: "Кликни на копчето подолу за да го добиеш твојот денешен предизвик!",
+            btnNewChallenge: "🎲 Нов предизвик",
+            btnCompleteChallenge: "✅ Го завршив ова!",
+            streakText: "🔥 Серија на завршени предизвици: ",
+            essayTitle: "Дигиталниот свет и притисокот врз младите",
+            essayP1: "Живееме во дигитален свет, многу поразличен од оној кој бил порано. Ако си тинејџер или пак си во почетокот на својата зрелост, можеби ќе се согласиш со фактот дека <strong>понекогаш родителите не го разбираат светот</strong> и не согледуваат како понекогаш може да биде тешко да се социјализираш и да се соочиш со притисокот од твоите врсници.",
+            essayP2: "Тите често не забележуваат дека денес бучавата не прекинува кога ќе го затвориш куферот или кога ќе си дојдеш дома; таа продолжува на нашите екрани, <strong>24/7</strong>, преку секое ново известување и секој „совршен“ туѓ живот што го гледаме онлајн. Се наоѓаме во еден чуден, тивок меѓупростор каде што сме поврзани со илјадници дигитални профили, а сепак, длабоко во себе, останува она чувство на осаменост и преоптовареност од преголемите очекувања.",
+            methodsTitle: "Начини како да го подобриш менталното здравје",
+            methodsSub: "Идеи кои ќе ти помогнат да се отргнеш од дигиталниот свет.",
+            badgeFocus: "Умствен фокус",
+            cardReadTitle: "📖 Читање книга",
+            cardReadText: "Запознавање со еден сосема нов свет кој е уредно опишан на чист лист хартија. Нурнувањето во фантазиите го тренира твојот мозок да одржи длабок фокус. Кога читаш, ти си режисер на сопствениот филм во главата.",
+            badgeBody: "Енергија на tissue",
+            cardRunTitle: "🏃 Физичка активност",
+            cardRunText: "Понекогаш сè што ти е потребно е едноставно да се придвижиш. Без разлика дали е тоа брзо трчање, интензивен тренинг во теретана, возење точак или само бавна прошетка. Движењето го согорува вишокот кортизол.",
+            journalTitle: "✍️ Водење личен дневник",
+            journalSub: "Испишување на твоите емоции на хартија или во овој тивок простор.",
+            journalPlaceholder: "Како помина твојот ден? Што те извади од такт, а што те израдува? Истури ги мислите тука...",
+            btnSaveJournal: "Зачувај белешка",
+            historyTitle: "Твоите претходни записи",
+            noEntries: "Сè уште немаш зачувано записи.",
+            btnDelete: "Избриши",
+            alertQuiz: "Ве молиме одговорете на сите 5 прашања пред да пресметате!",
+            alertAudioBlock: "Ве молиме кликнете било каде на страницата прво, па потоа пуштете го звукот!",
+            alertJournalEmpty: "Не може да зачуваш празна белешка!",
+            alertJournalSuccess: "Мислите се безбедно заклучени во твојот простор!",
+            alertDeleteConfirm: "Дали си сигурна дека сакаш да го избришеш овој запис од минатото?",
+            alertChallengeComplete: "Браво! Секој мал чекор е победа за твојот внатрешен мир. 🙌",
+            challengeDoneMsg: "Одлично завршено! Врати се пак кога ќе бидеш подготвена за нов предизвик."
+        },
+        en: {
+            navBrand: "Inner Peace.",
+            playBtn: "🎵 Play Ambient",
+            pauseBtn: "⏸️ Pause Peace",
+            linkHome: "Home",
+            linkQuiz: "Stress Test",
+            linkOffline: "Offline World",
+            linkJournal: "My Diary",
+            homeSub: "Do you even know how many people around the world are going through the same stress and pressure as you?",
+            heroCardTitle: "Disconnect from the digital world.",
+            heroCardSub: "Welcome to your personal space without notifications, social networks, and noise.",
+            heroCardText: "This page was created to remind you what it's like to enjoy your own presence. Take a few minutes for yourself, check your stress level through the quiz, or get inspired for your next offline activity.",
+            quizTitle: "How stressful is your day?",
+            quizSub: "Answer these 5 quick questions to check your current level of overload.",
+            lblQ1: "1. How many times today did you catch yourself scrolling social media without a specific reason?",
+            optQ1_1: "Just a few times briefly",
+            optQ1_2: "Often throughout the day",
+            optQ1_3: "Constantly on my phone, it's already a habit",
+            lblQ2: "2. How does your body feel right now?",
+            optQ2_1: "Relaxed and with good energy",
+            optQ2_2: "A bit tense in the shoulders/neck",
+            optQ2_3: "Exhausted and under constant pressure",
+            lblQ3: "3. Today, did you find at least 15 minutes to be alone with your thoughts without any screen?",
+            optQ3_1: "Yes, I enjoyed the silence",
+            optQ3_2: "I tried, but my thoughts raced quickly",
+            optQ3_3: "No, I constantly had something playing in the background",
+            lblQ4: "4. Do you often feel like you're failing your own expectations and falling behind others?",
+            optQ4_1: "Rarely, I know everyone has their own path",
+            optQ4_2: "Sometimes insecurity and pressure catch up with me",
+            optQ4_3: "Yes, I constantly feel pressure that I must do better",
+            lblQ5: "5. Do you feel like the world around you is pressing you with a pace that is too fast?",
+            optQ5_1: "No, I manage to maintain my peace",
+            optQ5_2: "Yes, occasionally I panic from too much information",
+            optQ5_3: "Yes, I often feel overwhelmed by everything",
+            btnCalculate: "View Result",
+            btnResetQuiz: "Try Again",
+            badgeInteractive: "Interactive",
+            challengeTitle: "🎯 Offline Challenge of the Day",
+            challengeSub: "Small steps that make a big difference for your peace.",
+            challengeDefault: "Click the button below to get your challenge for today!",
+            btnNewChallenge: "🎲 New Challenge",
+            btnCompleteChallenge: "✅ I finished this!",
+            streakText: "🔥 Current challenge streak: ",
+            essayTitle: "The Digital World and Pressure on Youth",
+            essayP1: "We live in a digital world, very different from the one that existed before. If you are a teenager or in your early adulthood, you might agree with the fact that <strong>sometimes parents do not understand this world</strong> and do not see how hard it can be to socialize and face pressure from your peers.",
+            essayP2: "They often don't notice that today the noise doesn't stop when you close your bag or come home; it continues on our screens, <strong>24/7</strong>, through every new notification and every 'perfect' life we see online. We find ourselves in a strange, silent intermediate space where we are connected to thousands of digital profiles, yet deep inside, that feeling of loneliness and being overwhelmed by massive expectations remains.",
+            methodsTitle: "Ways to Improve Your Mental Health",
+            methodsSub: "Ideas to help you break away from the digital world.",
+            badgeFocus: "Mental Focus",
+            cardReadTitle: "📖 Reading a Book",
+            cardReadText: "Getting to know a brand new world neatly described on a clean sheet of paper. Diving into fantasies trains your brain to maintain a deep focus. When you read, you are the director of your own movie in your head.",
+            badgeBody: "Body Energy",
+            cardRunTitle: "🏃 Physical Activity",
+            cardRunText: "Sometimes all you need is to simply move. Whether it's a fast run, an intense gym workout, riding a bike, or just a slow walk. Movement burns off excess cortisol.",
+            journalTitle: "✍️ Keeping a Personal Diary",
+            journalSub: "Writing down your emotions on paper or in this quiet space.",
+            journalPlaceholder: "How was your day? What drove you crazy, and what made you happy? Pour your thoughts here...",
+            btnSaveJournal: "Save Note",
+            historyTitle: "Your Previous Entries",
+            noEntries: "You haven't saved any entries yet.",
+            btnDelete: "Delete",
+            alertQuiz: "Please answer all 5 questions before calculating!",
+            alertAudioBlock: "Please click anywhere on the page first, then play the sound!",
+            alertJournalEmpty: "You cannot save an empty note!",
+            alertJournalSuccess: "Thoughts are safely locked in your space!",
+            alertDeleteConfirm: "Are you sure you want to delete this past entry?",
+            alertChallengeComplete: "Well done! Every small step is a victory for your inner peace. 🙌",
+            challengeDoneMsg: "Excellent job! Come back when you are ready for a new challenge."
+        }
+    };
+
+    const challengesMk = [
+        "📵 Помини ги следните 2 часа без да ги провериш социјалните мрежи.",
+        "📖 Прочитај барем 10 страници од некоја книга во целосна тишина.",
+        "🚶 Излези на 15-минутна прошетка без да ги носиш слушалките со тебе.",
+        "🍵 Направи си чај или кафе и испиј го полека, гледајќи низ прозорец, без телефон.",
+        "🧹 Расчисти го твоето биро или работна маса за почист ум.",
+        "📝 Напиши 3 работи на кои си искрено благодарна денес во твојот Дневник."
+    ];
+
+    const challengesEn = [
+        "📵 Spend the next 2 hours without checking social media.",
+        "📖 Read at least 10 pages of a book in complete silence.",
+        "🚶 Go for a 15-minute walk without taking your headphones with you.",
+        "🍵 Make some tea or coffee and drink it slowly, looking out the window, without your phone.",
+        "🧹 Clear your desk or workspace for a clearer mind.",
+        "📝 Write 3 things you are genuinely grateful for today in your Diary."
+    ];
+
+    /* МЕНИ КОНТРОЛИ ЗА НОВИОТ CUSTOM DROPDOWN */
+    function toggleLangMenu() {
+        document.getElementById('langDropdown').classList.toggle('show');
+    }
+
+    function selectLanguage(lang) {
+        document.getElementById('langDropdown').classList.remove('show');
+
+        const flagImg = document.getElementById('currentLangFlag');
+        const langText = document.getElementById('currentLangText');
+
+        if (lang === 'mk') {
+            flagImg.src = "https://flagcdn.com/w20/mk.png";
+            langText.innerText = "MK";
+        } else {
+            flagImg.src = "https://flagcdn.com/w20/gb.png";
+            langText.innerText = "EN";
+        }
+
+        changeLanguage(lang);
+    }
+
+    // Затвори го менито ако се кликне надвор од него
+    window.addEventListener('click', function (e) {
+        if (!document.querySelector('.lang-switcher').contains(e.target)) {
+            document.getElementById('langDropdown').classList.remove('show');
+        }
+    });
+
+    function changeLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.getElementById('navBrand').innerText = t.navBrand;
+        document.getElementById('linkHome').innerText = t.linkHome;
+        document.getElementById('linkQuiz').innerText = t.linkQuiz;
+        document.getElementById('linkOffline').innerText = t.linkOffline;
+        document.getElementById('linkJournal').innerText = t.linkJournal;
+
+        document.getElementById('homeSub').innerText = t.homeSub;
+        document.getElementById('heroCardTitle').innerText = t.heroCardTitle;
+        document.getElementById('heroCardSub').innerText = t.heroCardSub;
+        document.getElementById('heroCardText').innerText = t.heroCardText;
+
+        document.getElementById('quizTitle').innerText = t.quizTitle;
+        document.getElementById('quizSub').innerText = t.quizSub;
+        document.getElementById('lblQ1').innerText = t.lblQ1;
+        document.getElementById('optQ1_1').innerText = t.optQ1_1;
+        document.getElementById('optQ1_2').innerText = t.optQ1_2;
+        document.getElementById('optQ1_3').innerText = t.optQ1_3;
+
+        document.getElementById('lblQ2').innerText = t.lblQ2;
+        document.getElementById('optQ2_1').innerText = t.optQ2_1;
+        document.getElementById('optQ2_2').innerText = t.optQ2_2;
+        document.getElementById('optQ2_3').innerText = t.optQ2_3;
+
+        document.getElementById('lblQ3').innerText = t.lblQ3;
+        document.getElementById('optQ3_1').innerText = t.optQ3_1;
+        document.getElementById('optQ3_2').innerText = t.optQ3_2;
+        document.getElementById('optQ3_3').innerText = t.optQ3_3;
+
+        document.getElementById('lblQ4').innerText = t.lblQ4;
+        document.getElementById('optQ4_1').innerText = t.optQ4_1;
+        document.getElementById('optQ4_2').innerText = t.optQ4_2;
+        document.getElementById('optQ4_3').innerText = t.optQ4_3;
+
+        document.getElementById('lblQ5').innerText = t.lblQ5;
+        document.getElementById('optQ5_1').innerText = t.optQ5_1;
+        document.getElementById('optQ5_2').innerText = t.optQ5_2;
+        document.getElementById('optQ5_3').innerText = t.optQ5_3;
+
+        document.getElementById('btnCalculate').innerText = t.btnCalculate;
+        document.getElementById('btnResetQuiz').innerText = t.btnResetQuiz;
+
+        document.getElementById('badgeInteractive').innerText = t.badgeInteractive;
+        document.getElementById('challengeTitle').innerText = t.challengeTitle;
+        document.getElementById('challengeSub').innerText = t.challengeSub;
+        document.getElementById('challengeDisplay').innerText = t.challengeDefault;
+        document.getElementById('btnNewChallenge').innerText = t.btnNewChallenge;
+        document.getElementById('completeChallengeBtn').innerText = t.btnCompleteChallenge;
+
+        document.getElementById('essayTitle').innerText = t.essayTitle;
+        document.getElementById('essayP1').innerHTML = t.essayP1;
+        document.getElementById('essayP2').innerHTML = t.essayP2;
+
+        document.getElementById('methodsTitle').innerText = t.methodsTitle;
+        document.getElementById('methodsSub').innerText = t.methodsSub;
+        document.getElementById('badgeFocus').innerText = t.badgeFocus;
+        document.getElementById('cardReadTitle').innerText = t.cardReadTitle;
+        document.getElementById('cardReadText').innerText = t.cardReadText;
+        document.getElementById('badgeBody').innerText = t.badgeBody;
+        document.getElementById('cardRunTitle').innerText = t.cardRunTitle;
+        document.getElementById('cardRunText').innerText = t.cardRunText;
+
+        document.getElementById('journalTitle').innerText = t.journalTitle;
+        document.getElementById('journalSub').innerText = t.journalSub;
+        document.getElementById('journalInput').placeholder = t.journalPlaceholder;
+        document.getElementById('btnSaveJournal').innerText = t.btnSaveJournal;
+        document.getElementById('historyTitle').innerText = t.historyTitle;
+
+        const audio = document.getElementById('ambientAudio');
+        const btn = document.getElementById('ambientBtn');
+        if (!audio.paused) {
+            btn.innerText = t.pauseBtn;
+        } else {
+            btn.innerText = t.playBtn;
+        }
+
+        document.getElementById('streakCounter').innerText = `${t.streakText}${streak}`;
+        displayJournalEntries();
+    }
+
+    /* РУТИРАЊЕ */
+    const links = document.querySelectorAll('.nav-links a');
+    const pages = document.querySelectorAll('.page');
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetPage = link.getAttribute('data-page');
+
+            links.forEach(l => l.classList.remove('active'));
+            pages.forEach(p => p.classList.remove('active'));
+
+            link.classList.add('active');
+            document.getElementById(targetPage).classList.add('active');
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    });
+
+    /* КОНТРОЛА НА СКОКАЊЕ НАГОРЕ (SCROLL TO TOP) */
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollTopBtn.style.display = "flex";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    /* ЛОГИКА ЗА АУДИО (PLAY / PAUSE) */
+    function toggleAmbientAudio() {
+        const audio = document.getElementById('ambientAudio');
+        const btn = document.getElementById('ambientBtn');
+        const t = translations[currentLang];
+
+        if (audio.paused) {
+            audio.play()
+                .then(() => {
+                    btn.classList.add('playing');
+                    btn.innerText = t.pauseBtn;
+                })
+                .catch(err => {
+                    alert(t.alertAudioBlock);
+                });
+        } else {
+            audio.pause();
+            btn.classList.remove('playing');
+            btn.innerText = t.playBtn;
+        }
+    }
+
+    /* ЛОГИКА ЗА КВИЗОТ */
+    function calculateStress() {
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        const q3 = document.querySelector('input[name="q3"]:checked');
+        const q4 = document.querySelector('input[name="q4"]:checked');
+        const q5 = document.querySelector('input[name="q5"]:checked');
+        const t = translations[currentLang];
+
+        if (!q1 || !q2 || !q3 || !q4 || !q5) {
+            alert(t.alertQuiz);
+            return;
+        }
+
+        const totalScore = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value) + parseInt(q4.value) + parseInt(q5.value);
+        const stressPercentage = Math.round(((totalScore - 5) / 10) * 100);
+
+        const container = document.getElementById('quizContainer');
+        const resultBox = document.getElementById('quizResult');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultText = document.getElementById('resultText');
+
+        container.style.display = 'none';
+        resultBox.style.display = 'block';
+
+        if (currentLang === 'mk') {
+            if (stressPercentage <= 35) {
+                resultTitle.innerText = `😊 Среќен и мирен ум! (Стрес: ${stressPercentage}%)`;
+                resultText.innerText = "Одлично балансираш! Успеваш да го заштитиш твојот внатрешен свет од притисокот и очекувањата. Твојот ум е спокоен и среќен. Продолжи да уживаш во сопственото присуство!";
+            } else if (stressPercentage <= 70) {
+                resultTitle.innerText = `😐 Умерено ниво на замор (Стрес: ${stressPercentage}%)`;
+                resultText.innerText = "Се чувствува дека светот почнал да ти наметнову товар и дека премногу анализираш дали ги исполнуваш очекувањата. Време е за малку офлајн мир. Направи пауза од екраните уште денес.";
+            } else {
+                resultTitle.innerText = `😫 Високо ниво на преоптоварување! (Стрес: ${stressPercentage}%)`;
+                resultText.innerText = "Стоп! Твоето тело и ум бараат пауза. Чувството дека не ги исполнуваш очекувањата е само дигитална илузија од брзиот свет. Исклучи го телефонот, излези на чист воздух или олесни ја душата со пишување во Дневникот.";
+            }
+        } else {
+            if (stressPercentage <= 35) {
+                resultTitle.innerText = `😊 Happy and Peaceful Mind! (Stress: ${stressPercentage}%)`;
+                resultText.innerText = "Great balance! You manage to protect your inner world from peer pressure and heavy expectations. Your mind is calm and happy. Keep enjoying your own presence!";
+            } else if (stressPercentage <= 70) {
+                resultTitle.innerText = `😐 Moderate Level of Fatigue (Stress: ${stressPercentage}%)`;
+                resultText.innerText = "It feels like the world is starting to weigh you down and you're overanalyzing your goals. It's time for some offline peace. Take a break from screens today.";
+            } else {
+                resultTitle.innerText = `😫 High Level of Overload! (Stress: ${stressPercentage}%)`;
+                resultText.innerText = "Stop! Your body and mind are begging for a break. The feeling that you aren't meeting high expectations is just a digital illusion from a fast-paced world. Turn off your phone, get some fresh air, or clear your soul by writing in your Diary.";
+            }
+        }
+    }
+
+    function resetQuiz() {
+        document.getElementById('quizContainer').style.display = 'block';
+        document.getElementById('quizResult').style.display = 'none';
+        const checkedInputs = document.querySelectorAll('input[type="radio"]:checked');
+        checkedInputs.forEach(input => input.checked = false);
+    }
+
+    /* ОФЛАЈН ПРЕДИЗВИЦИ */
+    let streak = parseInt(localStorage.getItem('offlineStreak')) || 0;
+    document.getElementById('streakCounter').innerText = `${translations['mk'].streakText}${streak}`;
+
+    function generateChallenge() {
+        const list = (currentLang === 'mk') ? challengesMk : challengesEn;
+        const randomIndex = Math.floor(Math.random() * list.length);
+        document.getElementById('challengeDisplay').innerText = list[randomIndex];
+        document.getElementById('completeChallengeBtn').style.display = 'inline-block';
+    }
+
+    function completeChallenge() {
+        const t = translations[currentLang];
+        streak++;
+        localStorage.setItem('offlineStreak', streak);
+        document.getElementById('streakCounter').innerText = `${t.streakText}${streak}`;
+        alert(t.alertChallengeComplete);
+        document.getElementById('completeChallengeBtn').style.display = 'none';
+        document.getElementById('challengeDisplay').innerText = t.challengeDoneMsg;
+    }
+
+    /* ЛОКАЛНО ЗАЧУВУВАЊЕ ВО ДНЕВНИКОТ */
+    function saveJournalEntry() {
+        const input = document.getElementById('journalInput');
+        const text = input.value.trim();
+        const t = translations[currentLang];
+
+        if (!text) {
+            alert(t.alertJournalEmpty);
+            return;
+        }
+
+        let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+        const newEntry = {
+            text: text,
+            date: new Date().toLocaleString(currentLang === 'mk' ? 'mk-MK' : 'en-US')
+        };
+
+        entries.unshift(newEntry);
+        localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+        input.value = "";
+        displayJournalEntries();
+        alert(t.alertJournalSuccess);
+    }
+
+    function displayJournalEntries() {
+        const historyContainer = document.getElementById('journalHistory');
+        let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+        const t = translations[currentLang];
+
+        if (entries.length === 0) {
+            historyContainer.innerHTML = `<p style='color: var(--ink-soft); font-style: italic; text-align: center;'>${t.noEntries}</p>`;
+            return;
+        }
+
+        historyContainer.innerHTML = entries.map((entry, index) => `
+      <div class="card journal-history-item">
+        <span class="journal-date">📅 ${entry.date}</span>
+        <p style="margin-top: 8px; white-space: pre-wrap;">${entry.text}</p>
+        <button class="delete-entry-btn" onclick="deleteEntry(${index})">${t.btnDelete}</button>
+      </div>
+    `).join('');
+    }
+
+    function deleteEntry(index) {
+        const t = translations[currentLang];
+        if (confirm(t.alertDeleteConfirm)) {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            entries.splice(index, 1);
+            localStorage.setItem('journalEntries', JSON.stringify(entries));
+            displayJournalEntries();
+        }
+    }
+
+    window.onload = function () {
+        displayJournalEntries();
+    };
+</script>
+<footer class="main-footer">
+    <div class="wrap">
+        <p>&copy; 2026 Внатрешен Мир.</p>
+        <p class="footer-sub">Направено со 💙 за ментално здравје.</p>
+    </div>
+</footer>
+</body>
+</html>

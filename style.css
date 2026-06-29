@@ -1,0 +1,400 @@
+:root {
+    --ink: #1E293B;
+    --ink-soft: #475569;
+    --mint: #34D399;
+    --mint-dark: #059669;
+    --blue-cloud: #EBF4FC;
+    --white: #FFFFFF;
+    --shadow: rgba(15, 23, 42, 0.04);
+    --shadow-hover: rgba(15, 23, 42, 0.08);
+    --radius: 20px;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font);
+    background-color: bisque;
+    min-height: 100vh;
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-bottom: 70px; /* Ова овозможува содржината да не се крие под футерот */
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: #5fa8eb;
+    margin: 24px 0;
+    border-radius: 2px;
+}
+.topka {
+    text-align: center; /* Центрира сè што е внатре во div-от */
+    margin: 20px 0;
+}
+
+.topka img {
+    display: block;
+    margin: 0 auto;        /* Центрирање на самата слика */
+    width: 490px;       /* Сликата се прилагодува според картичката */
+    height: 440px;          /* Ја задржува пропорцијата */
+    border-radius: 20px;   /* Ова сега ќе биде видливо */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+/* ПРИЛАГОДЕН СЕЛЕКТОР ЗА ЈАЗИК (РЕШЕНИЕ ЗА ПРОБЛЕМОТ ОД image_cb9db4.jpg) */
+.lang-switcher {
+    position: relative;
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.lang-current {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #CBD5E1;
+    background: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #1e40af;
+    user-select: none;
+}
+
+.lang-current img, .lang-options img {
+    width: 20px;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.lang-options {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: white;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    min-width: 90px;
+    overflow: hidden;
+}
+
+.lang-options.show {
+    display: block;
+}
+
+.lang-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #334155;
+    transition: background 0.2s;
+}
+
+.lang-opt:hover {
+    background: #f1f5f9;
+    color: #1e40af;
+}
+
+/* СТИЛОВИ ЗА КОПЧЕТО ЗА ВРАЌАЊЕ НАГОРЕ */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Скриено на почеток */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 1000;
+}
+.scroll-top-btn:hover {
+    background-color: #3b82f6;
+    transform: translateY(-3px);
+}
+.hero-img {
+    display: block;
+    margin: 24px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 22px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- ПОЧЕТОК --- */
+.Pocetok {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.Pocetok h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 12px;
+}
+
+.Pocetok h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    line-height: 1.6;
+}
+
+.wrap {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.page {
+    display: none;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- НАВИГАЦИЈА И АУДИО ПЛЕЕР --- */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    height: 70px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.brand {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--ink);
+}
+
+.ambient-player {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 30px;
+}
+
+.player-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+}
+
+.audio-btn {
+    background: white;
+    border: 1px solid #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.audio-btn.playing {
+    background: #dbeafe;
+    color: #1e40af;
+    border-color: #93c5fd;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #1e40af;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* --- КАРТИЧКИ --- */
+.card {
+    background: var(--blue-cloud);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+}
+
+.hero-card { border-left: 5px solid #3b82f6; }
+.challenge-card { border-left: 5px solid #a855f7; }
+
+.challenge-box {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 16px 0;
+    border: 1px dashed #cbd5e1;
+}
+
+.card-badge {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--ink-soft);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* --- ИСТОРИЈА НА ДНЕВНИК --- */
+.journal-history-item {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 14px;
+    border-left: 4px solid #94a3b8;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.journal-date { font-size: 0.8rem; font-weight: 700; color: var(--ink-soft); }
+
+.delete-entry-btn {
+    position: absolute;
+    bottom: 14px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* --- КВИЗ & ТЕКСТ --- */
+.quiz-option {
+    display: block;
+    background: var(--white);
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border: 1px solid #E2E8F0;
+    font-size: 0.95rem;
+}
+
+.result-box {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    padding: 24px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.btn {
+    font-family: var(--font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn-primary { background: var(--mint); color: var(--white); }
+.btn-primary:hover { background: var(--mint-dark); }
+
+/* --- ФУТЕР --- */
+.main-footer {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: var(--ink-soft);
+    margin-top: auto; /* Ова го турка футерот секогаш на дното */
+}
+
+.main-footer .wrap {
+    padding: 0;
+    text-align: center;
+}
+
+.main-footer p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.footer-sub { font-size: 0.7rem; opacity: 0.7; }

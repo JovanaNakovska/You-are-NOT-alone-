@@ -26,11 +26,12 @@ body {
     -webkit-font-smoothing: antialiased;
     display: flex;
     flex-direction: column;
+    /* Избришавме padding-top за да почнува од самиот врв */
 }
 
 main {
     flex: 1;
-    padding-bottom: 70px; /* Ова овозможува содржината да не се крие под футерот */
+    padding-bottom: 70px;
 }
 
 hr {
@@ -41,26 +42,26 @@ hr {
     border-radius: 2px;
 }
 .topka {
-    text-align: center; /* Центрира сè што е внатре во div-от */
+    text-align: center;
     margin: 20px 0;
 }
 
 .topka img {
     display: block;
-    margin: 0 auto;        /* Центрирање на самата слика */
-    width: 490px;       /* Сликата се прилагодува според картичката */
-    height: 440px;          /* Ја задржува пропорцијата */
-    border-radius: 20px;   /* Ова сега ќе биде видливо */
+    margin: 0 auto;
+    width: 490px;
+    height: 440px;
+    border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-/* ПРИЛАГОДЕН СЕЛЕКТОР ЗА ЈАЗИК (РЕШЕНИЕ ЗА ПРОБЛЕМОТ ОД image_cb9db4.jpg) */
+
+/* ===== ЈАЗИЧЕН ПРЕВКЛУЧУВАЧ (LANG SWITCHER) ===== */
 .lang-switcher {
     position: relative;
-    margin-left: 15px;
-    display: inline-block;
 }
 
 .lang-current {
+    position: relative; /* важно: дропдаунот се позиционира во однос на ова копче */
     display: flex;
     align-items: center;
     gap: 8px;
@@ -85,14 +86,15 @@ hr {
 .lang-options {
     display: none;
     position: absolute;
-    top: 110%;
+    top: calc(100% + 6px);
     right: 0;
+    left: auto;
+    min-width: 90px;
     background: white;
     border: 1px solid #CBD5E1;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 2000;
-    min-width: 90px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    z-index: 9999;
     overflow: hidden;
 }
 
@@ -116,7 +118,6 @@ hr {
     color: #1e40af;
 }
 
-/* СТИЛОВИ ЗА КОПЧЕТО ЗА ВРАЌАЊЕ НАГОРЕ */
 .scroll-top-btn {
     position: fixed;
     bottom: 25px;
@@ -129,7 +130,7 @@ hr {
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
-    display: none; /* Скриено на почеток */
+    display: none;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -149,7 +150,6 @@ hr {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* --- ПОЧЕТОК --- */
 .Pocetok {
     text-align: center;
     margin-bottom: 30px;
@@ -178,7 +178,7 @@ hr {
 
 .page {
     display: none;
-    padding-top: 100px;
+    padding-top: 20px; /* Намалено за да не прави преголем простор */
     padding-bottom: 50px;
     animation: fadeIn 0.4s ease-in-out;
 }
@@ -192,41 +192,68 @@ hr {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- НАВИГАЦИЈА И АУДИО ПЛЕЕР --- */
+/* ===== НАВИГАЦИЈА ===== */
 .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 1000;
-    height: 70px;
 }
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    max-width: 1000px;
+    max-width: 650px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 10px 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-family: Candara, system-ui, sans-serif;
+    color: var(--ink);
+    margin: 0;
+    transition: transform 0.2s;
 }
 
 .brand {
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--ink);
+    margin-bottom: 5px;
+}
+
+.nav-bottom-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.nav-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
 }
 
 .ambient-player {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: #f1f5f9;
     padding: 6px 12px;
     border-radius: 30px;
+    position: relative;
 }
 
 .player-label {
@@ -257,6 +284,9 @@ hr {
     display: flex;
     gap: 10px;
     list-style: none;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -275,7 +305,6 @@ hr {
     background: rgba(0, 0, 0, 0.04);
 }
 
-/* --- КАРТИЧКИ --- */
 .card {
     background: var(--blue-cloud);
     border-radius: var(--radius);
@@ -283,6 +312,7 @@ hr {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.6);
     margin-bottom: 24px;
+    position: relative;
 }
 
 .hero-card { border-left: 5px solid #3b82f6; }
@@ -312,7 +342,6 @@ hr {
     border-radius: 20px;
 }
 
-/* --- ИСТОРИЈА НА ДНЕВНИК --- */
 .journal-history-item {
     background: #fafafa;
     padding: 20px;
@@ -336,7 +365,6 @@ hr {
     font-weight: 600;
 }
 
-/* --- КВИЗ & ТЕКСТ --- */
 .quiz-option {
     display: block;
     background: var(--white);
@@ -371,7 +399,6 @@ hr {
 .btn-primary { background: var(--mint); color: var(--white); }
 .btn-primary:hover { background: var(--mint-dark); }
 
-/* --- ФУТЕР --- */
 .main-footer {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(16px);
@@ -383,7 +410,7 @@ hr {
     justify-content: center;
     width: 100%;
     color: var(--ink-soft);
-    margin-top: auto; /* Ова го турка футерот секогаш на дното */
+    margin-top: auto;
 }
 
 .main-footer .wrap {

@@ -11,36 +11,37 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <div class="brand" id="navBrand">Внатрешен Мир.</div>
-
-        <!-- ИНТЕЛЕГЕНТЕН АУДИО ПЛЕЕР ЗА АМБИЕНТ -->
-        <div class="ambient-player">
-            <button class="audio-btn" id="ambientBtn" onclick="toggleAmbientAudio()">🎵 Пушти амбиент</button>
-            <audio id="ambientAudio" loop src="ambient.mp3"></audio>
+        <!-- Логото само во средина -->
+        <div class="brand" id="navBrand">
+            <h1 id="siteTitleText">Внатрешен Мир.</h1>
         </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" data-page="home" class="active" id="linkHome">Почетна</a></li>
-            <li><a href="#kviz" data-page="kviz" id="linkQuiz">Тест за Стрес</a></li>
-            <li><a href="#offline" data-page="offline" id="linkOffline">Офлајн Свет</a></li>
-            <li><a href="#dnevnik" data-page="dnevnik" id="linkJournal">Мој Дневник</a></li>
-
-            <!-- ПРИЛАГОДЕНО МЕНИ ЗА ЈАЗИК СО ВИСТИНСКИ СЛИКИ-ЗНАМИЊА -->
-            <li class="lang-switcher">
-                <div class="lang-current" onclick="toggleLangMenu()">
+        <!-- Група за останатите елементи под логото -->
+        <div class="nav-bottom-row">
+            <div class="ambient-player">
+                <button class="audio-btn" id="ambientBtn" onclick="toggleAmbientAudio()">🎵 Пушти амбиент</button>
+                <audio id="ambientAudio" loop src="ambient.mp3"></audio>
+                <div class="lang-current lang-switcher" onclick="toggleLangMenu()">
                     <img id="currentLangFlag" src="https://flagcdn.com/w20/mk.png" alt="MK">
-                    <span id="currentLangText">MK</span> <span style="font-size: 0.7rem;">▼</span>
-                </div>
-                <div class="lang-options" id="langDropdown">
-                    <div class="lang-opt" onclick="selectLanguage('mk')">
-                        <img src="https://flagcdn.com/w20/mk.png" alt="MK"> MK
+                    <span id="currentLangText">MK</span> ▼
+                    <div class="lang-options" id="langDropdown">
+                        <div class="lang-opt" onclick="selectLanguage('mk')">
+                            <img src="https://flagcdn.com/w20/mk.png"> MK
+                        </div>
+                        <div class="lang-opt" onclick="selectLanguage('en')">
+                            <img src="https://flagcdn.com/w20/gb.png"> EN
+                        </div>
                     </div>
-                    <div class="lang-opt" onclick="selectLanguage('en')">
-                        <img src="https://flagcdn.com/w20/gb.png" alt="EN"> EN
-                    </div>
                 </div>
-            </li>
-        </ul>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-page="home" class="active" id="linkHome">Почетна</a></li>
+                <li><a href="#kviz" data-page="kviz" id="linkQuiz">Тест за Стрес</a></li>
+                <li><a href="#offline" data-page="offline" id="linkOffline">Офлајн Свет</a></li>
+                <li><a href="#dnevnik" data-page="dnevnik" id="linkJournal">Мој Дневник</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -49,7 +50,7 @@
     <section class="page active" id="home">
         <div class="wrap">
             <div class="Pocetok">
-                <h2>Никогаш не си САМ!</h2>
+                <h2 id="mainHeroTitle">Никогаш не си САМ!</h2>
                 <h3 id="homeSub">Дали само знаеш колку луѓе ширум светот поминуваат низ истиот стрес и притисок како и
                     ти?</h3>
                 <img src="prva-slika.jpg" alt="Поддршка" class="hero-img" height="213" width="320"/>
@@ -254,6 +255,7 @@
             linkQuiz: "Тест за Стрес",
             linkOffline: "Офлајн Свет",
             linkJournal: "Мој Дневник",
+            mainHeroTitle: "Никогаш не си САМ!",
             homeSub: "Дали само знаеш колку луѓе ширум светот поминуваат низ истиот стрес и притисок како и ти?",
             heroCardTitle: "Исклучи се од дигиталниот свет.",
             heroCardSub: "Добредојде во твојот личен простор без нотификации, социјални мрежи и врева.",
@@ -291,13 +293,13 @@
             streakText: "🔥 Серија на завршени предизвици: ",
             essayTitle: "Дигиталниот свет и притисокот врз младите",
             essayP1: "Живееме во дигитален свет, многу поразличен од оној кој бил порано. Ако си тинејџер или пак си во почетокот на својата зрелост, можеби ќе се согласиш со фактот дека <strong>понекогаш родителите не го разбираат светот</strong> и не согледуваат како понекогаш може да биде тешко да се социјализираш и да се соочиш со притисокот од твоите врсници.",
-            essayP2: "Тите често не забележуваат дека денес бучавата не прекинува кога ќе го затвориш куферот или кога ќе си дојдеш дома; таа продолжува на нашите екрани, <strong>24/7</strong>, преку секое ново известување и секој „совршен“ туѓ живот што го гледаме онлајн. Се наоѓаме во еден чуден, тивок меѓупростор каде што сме поврзани со илјадници дигитални профили, а сепак, длабоко во себе, останува она чувство на осаменост и преоптовареност од преголемите очекувања.",
+            essayP2: "Тие често не забележуваат дека денес бучавата не прекинува кога ќе го затвориш куферот или кога ќе си дојдеш дома; таа продолжува на нашите екрани, <strong>24/7</strong>, преку секое ново известување и секој „совршен“ туѓ живот што го гледаме онлајн. Се наоѓаме во еден чуден, тивок меѓупростор каде што сме поврзани со илјадници дигитални профили, а сепак, длабоко во себе, останува она чувство на осаменост и преоптовареност од преголемите очекувања.",
             methodsTitle: "Начини како да го подобриш менталното здравје",
             methodsSub: "Идеи кои ќе ти помогнат да се отргнеш од дигиталниот свет.",
             badgeFocus: "Умствен фокус",
             cardReadTitle: "📖 Читање книга",
             cardReadText: "Запознавање со еден сосема нов свет кој е уредно опишан на чист лист хартија. Нурнувањето во фантазиите го тренира твојот мозок да одржи длабок фокус. Кога читаш, ти си режисер на сопствениот филм во главата.",
-            badgeBody: "Енергија на tissue",
+            badgeBody: "Енергија на телото",
             cardRunTitle: "🏃 Физичка активност",
             cardRunText: "Понекогаш сè што ти е потребно е едноставно да се придвижиш. Без разлика дали е тоа брзо трчање, интензивен тренинг во теретана, возење точак или само бавна прошетка. Движењето го согорува вишокот кортизол.",
             journalTitle: "✍️ Водење личен дневник",
@@ -323,6 +325,7 @@
             linkQuiz: "Stress Test",
             linkOffline: "Offline World",
             linkJournal: "My Diary",
+            mainHeroTitle: "You are NOT alone!",
             homeSub: "Do you even know how many people around the world are going through the same stress and pressure as you?",
             heroCardTitle: "Disconnect from the digital world.",
             heroCardSub: "Welcome to your personal space without notifications, social networks, and noise.",
@@ -404,7 +407,7 @@
         "📝 Write 3 things you are genuinely grateful for today in your Diary."
     ];
 
-    /* МЕНИ КОНТРОЛИ ЗА НОВИОТ CUSTOM DROPDOWN */
+    /* МЕНИ КОНТРОЛИ ЗА CUSTOM DROPDOWN */
     function toggleLangMenu() {
         document.getElementById('langDropdown').classList.toggle('show');
     }
@@ -443,6 +446,7 @@
         document.getElementById('linkOffline').innerText = t.linkOffline;
         document.getElementById('linkJournal').innerText = t.linkJournal;
 
+        document.getElementById('mainHeroTitle').innerText = t.mainHeroTitle;
         document.getElementById('homeSub').innerText = t.homeSub;
         document.getElementById('heroCardTitle').innerText = t.heroCardTitle;
         document.getElementById('heroCardSub').innerText = t.heroCardSub;
@@ -610,7 +614,7 @@
                 resultText.innerText = "Одлично балансираш! Успеваш да го заштитиш твојот внатрешен свет од притисокот и очекувањата. Твојот ум е спокоен и среќен. Продолжи да уживаш во сопственото присуство!";
             } else if (stressPercentage <= 70) {
                 resultTitle.innerText = `😐 Умерено ниво на замор (Стрес: ${stressPercentage}%)`;
-                resultText.innerText = "Се чувствува дека светот почнал да ти наметнову товар и дека премногу анализираш дали ги исполнуваш очекувањата. Време е за малку офлајн мир. Направи пауза од екраните уште денес.";
+                resultText.innerText = "Се чувствува дека светот почнал да ти наметнува товар и дека премногу анализираш дали ги исполнуваш очекувањата. Време е за малку офлајн мир. Направи пауза од екраните уште денес.";
             } else {
                 resultTitle.innerText = `😫 Високо ниво на преоптоварување! (Стрес: ${stressPercentage}%)`;
                 resultText.innerText = "Стоп! Твоето тело и ум бараат пауза. Чувството дека не ги исполнуваш очекувањата е само дигитална илузија од брзиот свет. Исклучи го телефонот, излези на чист воздух или олесни ја душата со пишување во Дневникот.";
@@ -714,6 +718,7 @@
     window.onload = function () {
         displayJournalEntries();
     };
+
 </script>
 <footer class="main-footer">
     <div class="wrap">
